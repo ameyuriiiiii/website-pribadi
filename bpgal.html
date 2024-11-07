@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bons Photo's Gallery</title>
+    <style>
+      /* Basic Reset */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Arial", sans-serif;
+        background-color: #f0f0f0;
+        color: #333;
+      }
+
+      /* Container untuk galeri */
+      .gallery-container {
+        width: 90%;
+        margin: 30px auto;
+        text-align: center;
+      }
+
+      h1 {
+        margin-bottom: 40px;
+        color: #333;
+        font-size: 36px;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+      }
+
+      /* Grid Gallery */
+      .gallery {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 20px;
+      }
+
+      .gallery-item {
+        position: relative;
+        overflow: hidden;
+        border-radius: 15px;
+        box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+        cursor: pointer;
+        transition: transform 0.4s ease, box-shadow 0.4s ease;
+      }
+
+      .gallery-item img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.4s ease;
+      }
+
+      .gallery-item:hover {
+        transform: scale(1.05);
+        box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
+      }
+
+      .gallery-item:hover img {
+        transform: scale(1.1);
+      }
+
+      /* Caption Style */
+      .caption {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        padding: 10px;
+        background: rgba(0, 0, 0, 0.5);
+        color: white;
+        font-size: 18px;
+        text-align: center;
+        transition: transform 0.3s ease;
+        transform: translateY(100%);
+      }
+
+      .gallery-item:hover .caption {
+        transform: translateY(0);
+      }
+
+      /* Lightbox Styles */
+      .lightbox {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.8);
+        display: none;
+        justify-content: center;
+        align-items: center;
+        z-index: 1000;
+      }
+
+      .lightbox img {
+        max-width: 90%;
+        max-height: 80%;
+        border-radius: 10px;
+      }
+
+      .lightbox.active {
+        display: flex;
+      }
+
+      .close-btn {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        font-size: 30px;
+        color: #fff;
+        background: rgba(198, 6, 6, 0.6);
+        padding: 10px;
+        border-radius: 50%;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="gallery-container">
+      <h1>Bons Photo's Gallery</h1>
+
+      <div class="gallery">
+        <div
+          class="gallery-item"
+          onclick="openLightbox('https://via.placeholder.com/800x600?text=Foto+1')"
+        >
+          <img src="img/f7.jpeg" alt="Foto 1" />
+          <div class="caption">Family</div>
+        </div>
+        <div
+          class="gallery-item"
+          onclick="openLightbox('https://via.placeholder.com/800x600?text=Foto+2')"
+        >
+          <img src="img/f5.jpeg" alt="Foto 2" />
+          <div class="caption">Dark</div>
+        </div>
+        <div
+          class="gallery-item"
+          onclick="openLightbox('https://via.placeholder.com/800x600?text=Foto+3')"
+        >
+          <img src="img/f4.jpeg" alt="Foto 3" />
+          <div class="caption">Graduation</div>
+        </div>
+        <div
+          class="gallery-item"
+          onclick="openLightbox('https://via.placeholder.com/800x600?text=Foto+4')"
+        >
+          <img src="img/f1.jpeg" alt="Foto 4" />
+          <div class="caption">Graduation</div>
+        </div>
+        <div
+          class="gallery-item"
+          onclick="openLightbox('https://via.placeholder.com/800x600?text=Foto+5')"
+        >
+          <img src="img/f3.jpeg" alt="Foto 5" />
+          <div class="caption">Dark</div>
+        </div>
+        <div
+          class="gallery-item"
+          onclick="openLightbox('https://via.placeholder.com/800x600?text=Foto+6')"
+        >
+          <img src="img/f2.jpeg" alt="Foto 6" />
+          <div class="caption">Graduation</div>
+        </div>
+      </div>
+
+      <!-- Lightbox -->
+      <div class="lightbox" id="lightbox">
+        <span class="close-btn" onclick="closeLightbox()">×</span>
+        <img id="lightbox-img" src="" alt="Lightbox Image" />
+      </div>
+    </div>
+
+    <script>
+      // Fungsi untuk membuka lightbox
+      function openLightbox(imageUrl) {
+        const lightbox = document.getElementById("lightbox");
+        const lightboxImg = document.getElementById("lightbox-img");
+        lightboxImg.src = imageUrl;
+        lightbox.classList.add("active");
+      }
+
+      // Fungsi untuk menutup lightbox
+      function closeLightbox() {
+        const lightbox = document.getElementById("lightbox");
+        lightbox.classList.remove("active");
+      }
+    </script>
+  </body>
+</html>
